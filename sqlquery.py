@@ -46,6 +46,7 @@ class SQLQuery:
 	# the previous
 	def requestStatAtLocation(self, args):
 
+		# Set default arguments
 		country = "%"
 		province = "%"
 		county = "%"
@@ -86,7 +87,6 @@ class SQLQuery:
 		s = self.mycursor.fetchall()[0][0]
 		return int(s)
 
-	# I don't use this anymore
 	def request(self, args):
 		country = "%"
 		province = "%"
@@ -110,8 +110,13 @@ class SQLQuery:
 		if len(args[1].split(",")) > 2:
 			county = args[1].split(",")[2]
 		
+		# Hard coded for specific statistics on a global scale if requested
 		if (country == "GLOBAL"):
 			command = "SELECT sum({}) FROM dataset".format(stat)
+		
+		# Different for the purpose of accuracy. If the country isnt the US and doesn't have a province
+		# (triggering the else) then we exclude any terrirtories the country might have from its final
+		# sum.
 		elif country == "US" or province != "%":
 			command = "SELECT sum({}) FROM dataset WHERE Country_Region LIKE \'{}\' AND Province_State LIKE \'{}\' AND Admin2 LIKE \'{}\'".format(stat, country, province, county)
 		else:
@@ -119,7 +124,6 @@ class SQLQuery:
 			" Province_State = \'\') = 1, ( SELECT {s} FROM dataset as d WHERE Country_Region = \'{c}\' AND" + 
 			" Province_State = \'\' ), ( SELECT SUM({s}) FROM dataset as d WHERE Country_Region = \'{c}\' ))"+
 			" as \'{s}\'").format(s=stat, c=country)
-		#print(command)
 		info = self.mycursor.execute(command)
 
 		return self.mycursor.fetchall()
