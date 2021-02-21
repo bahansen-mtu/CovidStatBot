@@ -11,16 +11,12 @@ import threading
 
 delay, selDigit, display_list, digitDP, arrSeg = setup()
 counter = CounterNumber()
-#set_counter(counter)
 
 class ThreadThing(threading.Thread):
     def __init__():
         Thread.__init__(self)
     def run(self):
         tick(counter, delay, selDigit, display_list, digitDP, arrSeg)
-
-#x=threading.Thread(target=tick, args=(counter, delay, selDigit, display_list, digitDP, arrSeg,))
-#x.start()
 
 # Set up the connection to the SQL by passing information about
 # the server to the SQLQuery class
@@ -53,18 +49,18 @@ async def on_message(message):
 		return
 
 	# Handle commands
-	#if message.content.startswith("csb!"):
 	if message.content.startswith(str(f'<@!{bot.user.id}>')):
         
 		counter.count += 1
-		#tick(counter, delay, selDigit, display_list, digitDP, arrSeg)
 		command = message.content.upper()
 
 		#'''
+		#Split the arguments
 		args = command.split(" ")
 		args.remove(args[0])
 		print("Command Recieved: " + message.content)
 
+		# Command to get the state restrictions
 		if args[0] == "RESTRICTIONS":
 			args.remove(args[0])
 			try:
@@ -84,6 +80,8 @@ async def on_message(message):
 				return
 			print("Graph Generated, sending image")
 			await message.channel.send(file=discord.File("image\\graph.png"))
+		
+		# Get the exact statistic from a location. Can be multiple
 		if args[0] == "GET":
 			args.remove(args[0])
 			try:
@@ -93,6 +91,7 @@ async def on_message(message):
 				await message.channel.send("Invalid Command, check syntax or spelling or try ```@CovidStatBot help```")
 			return
 
+		# Display the help menu
 		if args[0] == "HELP":
 
 			await message.channel.send(
@@ -116,7 +115,7 @@ async def on_message(message):
 
 				"```"
 				)
-
+		# Display the sources of information
 		if args[0] == "SOURCE":
 			await message.channel.send(
 
@@ -141,7 +140,7 @@ async def tickDisplay():
 
 bot.loop.create_task(tickDisplay())
 
-token = "ODEyNTEwMjU5NjcxMzM0OTQy.YDBzJQ.RD4-gmel96o79zddu3ZVuE0kq8g"
+token = "YOUR_TOKEN_HERE"
 
 # Run the bot
 bot.run(token)
