@@ -51,7 +51,7 @@ class Grapher:
 			plt.bar(locations, locationNumbers)
 
 			# Make it look official
-			plt.title(stats[0] + " per country")
+			plt.title(stats[0] + " per location")
 			plt.xlabel("Location")
 			plt.ylabel(stats[0])
 			plt.xticks(rotation=45)
