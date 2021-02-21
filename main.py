@@ -72,7 +72,6 @@ async def on_message(message):
 		# Generate a graph
 		if args[0] == "GRAPH":
 			args.remove(args[0])
-			# please remind me to change this shit
 			try:
 				Graphing.Grapher.graph(args, queryThing)
 			except:
