@@ -21,11 +21,11 @@ class ThreadThing(threading.Thread):
 # Set up the connection to the SQL by passing information about
 # the server to the SQLQuery class
 queryThing = query.SQLQuery(
-			"classdb.it.mtu.edu",
-			"bahansen",
+			"server",
+			"username",
 			"password",
-			"teamnoname",
-			"3307")
+			"database",
+			"port number")
 #'''
 
 # Loads the .env file that resides on the same level as the script.
