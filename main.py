@@ -102,6 +102,9 @@ async def on_message(message):
 
 				"get\tGet a specific statistic from a region\n" +
 				"EXAMPLE: @CovidStatBot get STAT COUNTRY,PROVINCE\n\n" +
+				
+				"restrictions\tGet the restrictions specific to a US state\n" +
+				"EXAMPLE: @CovidStatBot restrictions STATE\n\n" +
 
 				"help\tDisplays this message\n\n" +
 
