@@ -124,6 +124,8 @@ async def on_message(message):
 				"DataSet used with permission from COVID-19 Data Repository by the " +
 				"Center for Systems Science and Engineering (CSSE) at Johns Hopkins University\n\n" +
 				"Can be found at https://github.com/CSSEGISandData/COVID-19" +
+                		"State Guidelines and Restrictions arweb scraped from the following New York Times list that is updated regularly\n\n" +
+                		"Can be found at https://www.nytimes.com/interactive/2020/us/states-reopen-map-coronavirus.html"
 				"```"
 
 				)
@@ -139,7 +141,6 @@ async def tickDisplay():
 
 bot.loop.create_task(tickDisplay())
 
-# Fix this shit later
 token = "ODEyNTEwMjU5NjcxMzM0OTQy.YDBzJQ.RD4-gmel96o79zddu3ZVuE0kq8g"
 
 # Run the bot
